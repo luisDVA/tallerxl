@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Importando datos desde hojas de cálculo</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Luis D. Verde Arregoitia" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-extra-styles-0.2.3.9000/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x6be3f33529746f881932c7f13ddff6e","expires":1}</script>
+    <script src="libs/himalaya-1.1.0/himalaya.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="libs/editable-0.2.3.9000/editable.css" rel="stylesheet" />
+    <script src="libs/editable-0.2.3.9000/editable.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Importando datos desde hojas de cálculo
+### Luis D. Verde Arregoitia
+### Talleres LatinR 2020
+### 2020/10/01
+
+---
+
+class: right, middle
+
+
+&lt;img src="imgs/luisconmila.jpg" width="180px"/&gt;
+
+# Dónde encontrarme...
+
+[&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/&gt;&lt;/svg&gt; @LuisDVerde](https://twitter.com/LuisDVerde)  
+[&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 496 512"&gt;&lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/&gt;&lt;/svg&gt; @LuisDVA](https://github.com/luisdva)  
+[&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt; liomys.mx](https://liomys.mx)  
+[&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/&gt;&lt;/svg&gt; luis@liomys.mx](mailto:luis@liomys.mx)
+
+???
+Las diapositivas tienen vínculos a practicamente todo lo que voy a estar mencionando.
+Hoy voy a estar alternando entre la presentación y Rstudio, trabajando en un script que se actualiza en vivo.
+---
+# Hojas de cálculo
+
+## &gt;800,000,000 usuarios de Excel [(2018)](http://grid.is)
+## ~170,000,000 usuarios de Google Sheets [(2018)](http://grid.is)
+
+.pull-left[
+.f4[[VisiCalc, 1983](https://en.wikipedia.org/wiki/VisiCalc)
+&lt;img src="imgs/Visicalc.png" /&gt;]
+]
+
+.pull-right[
+.f4[[Registro de préstamos. Roma, 1593](https://librarysearch.temple.edu/catalog/991029783589703811
+)]&lt;img src="imgs/rome.jpg" width="60%" height=50%/&gt;  
+]
+???
+
+La idea de este taller surge porque desde algunos años me ha interesado la conexión entre una de las herramientas más usadas para guardar y manejar datos, y R. 
+
+Hay casi mil millones de usuarios de hojas de cálculo, que asi como las conocemos tienen casi 40 años y en forma de papel tienen siglos ya. Mientras tanto, R tiene unos 25 años y menos de un millón de usuarios. De hecho ayer fue el cumpleaños 35 de Excel.
+
+Todos ésto es para decir que las hojas de cálculo no se van a ir a ningún lado. En todas las disciplinas que conozco la información se comparte en estos formatos, y en mi opinión casi no se nos enseña a trabajar con estos formatos.
+---
+# Hojas de cálculo en disco
+
+##xls
+
+.f3[Excel 2003 - Archivo binario, patentado por MS. Permite macros.]
+
+#xlsx
+.f3[Excel 2007 en adelante - Formato XML. Con compresión. No permite macros. Almacena más filas y columnas que `.xls`.]
+
+##ods
+.f3[OpenOffice, StarOffice &amp; LibreOffice - Formato XML similar a xlsx. Licencia CC.
+]
+???
+
+Hoy vamos a hablar principalmente sobre las hojas de cálculo que guardamos como archivos, descargamos, y compartimos. 
+
+Estos son tres de los formatos más utilizados.
+
+xls es el formato de Excel 2003, y por ser un archivo binario anclado a formatos patentados, no lo recomiendo.
+
+Excel de 2007 en adelante lee todos los demás, y también existe el formato ods que utilizan los paquetes de oficina de código abierto. 
+
+Estos últimos dos son bastante parecidos y para la mayoría de su funcionalidad yo diría que son intercambiables. 
+---
+background-image: url("imgs/recosistema.png")
+
+???
+Esta es una representación muy simplificada de lo que se puede y no se puede hacer entre formatos.
+
+Para guardar y presentar datos tenemos muchas opciones. Puede ser como archivos de texto (como csv, tsv, txt) que son de las formas más simples para guardar datos tabulares, y estos los podemos abrir con R, con excel, o importar a bases de datos. R también puede conectarse a bases de datos como sql o mongo, además podemos generar reportes, aplicaciones, o páginas web desde R.
+
+Pero hoy el enfoque es aquí, entre R y hojas de cálculo.
+---
+class: center, middle
+# Organización de datos
+
+???
+Antes de cualquier otra cosa, toca hablar sobre organización de datos. Esto es importante porque las hojas de cálculo son como un lienzo en blanco que nos permiten mucha flexibilidad, lo cual a veces complica la organización de los datos y cómo los podemos importar y trabajar.
+---
+class: center, middle
+![ejemplo xls](imgs/excel8bit.jpg)
+por  [Christian Wijaya](https://asapguide.com/how-to-make-8-bit-art-using-microsoft-excel/)
+
+???
+en un archivo excel tenemos todas estas celdas vacías para hacer lo que querramos, y por qué no hacer unos dibujos.
+---
+class: center, middle
+![ejemplo xls](imgs/bromanwoo.png)
+
+Broman &amp; Woo ([2018](https://doi.org/10.1080/00031305.2017.1375989))
+
+???
+Por suerte, desde hace dos años ya está disponible abiertamente está guía sobre cómo organizar datos en hojas de cálculo. Está en inglés pero vale mucho la pena.
+---
+# Organización de datos
+.right-column[
+.center[
+.f2[Nombres adecuados
+
+Un solo valor por celda
+
+Fechas en AAAA-MM-DD
+
+Sin celdas vacías  (**Rectangular**)
+
+Sin colores ni estilos de letra
+
+Guardar como archivo de texto]]]
+
+.left-column[
+![tetris](imgs/tetris.png)
+]
+???
+éstas son algunas recomendaciones que hacen los autores del artículo que mencioné.
+
+Hay que darle nombres adecuados a los archivos y a las variables que estamos usando.
+Hay que guardar un solo valor en cada celda.
+Las fechas de preferencia en formato año mes día.
+Sin dejar celdas en blanco, y de preferencia formando rectángulos con las filas y las columnas.
+Sin depender en colores, letras, u otros formatos para almacenar información.
+y, al momento de compartir, preferir archivos de texto.
+---
+class: center, middle
+![ejemplo xls](imgs/contabilidadxls.png)
+
+???
+este es un ejemplo inventado de lo que no conviene hacer.
+no es rectangular, hay colores y otros formatos, y los datos en sí están desordenados.
+
+Teniendo esto en mente, sigue siendo necesario poder importar los archivos que ya tenemos, así que ahora sí vamos a ver cómo importar hojas de cálculo a R.
+---
+class: center, middle
+# Importando datos
+##GUI de RStudio (`readxl`)  
+##`readxl`  
+[https://readxl.tidyverse.org/](https://readxl.tidyverse.org/)
+
+???
+me voy a enfocar en archivos xlsx de Excel, y lo que recomiendo para esto es readxl, que se puede usar con una herramienta gráfica dentro de Rstudio, o llamando sus funciones directamente.
+---
+background-image: url(https://raw.githubusercontent.com/tidyverse/readxl/master/man/figures/logo.png)
+background-position: 90% 5%
+background-size: 10% 
+# Importar con `readxl`
+.left-column[
+
+```r
+library(readxl)
+read_xls()
+read_xlsx()
+read_excel()
+```
+]
+.right-column[
+
+Archivos Excel 2003 (mediante la librería de C `libxls`)   
+Archivos Excel 2007 (mediante la librería de C++ `RapidXML`)  
+adivina el formato
+]&lt;br&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+### Argumentos importantes
+
+```r
+read_excel(path = ,  # ruta del archivo
+           sheet = , # nombre, o número que indica la posición
+           range = , # celdas a importar (opcional)
+           )
+```
+
+???
+cargamos el paquete, y éstas son las funciones que nos interesan
+podemos especificar el formato del archivo que vamos a leer, o dejar que lo adivine
+
+los tres argumentos que nos interesan son path, con la ruta del archivo
+sheet, con la hoja
+y range, con las celdas a importar, en el formato de rangos que usa excel
+
+---
+background-image: url("https://www.clondalkingroup.com/wp-content/uploads/2015/03/Bundle-wrap.jpg")
+background-size: cover
+
+???
+este six de cerveza está aquí porque refleja el comportamiento por defecto de readxl cuando lee hojas
+
+la misma documentación nos dice que funciona como estos plásticos que encogen con calor, y al leer una hoja la función busca el rectángulo de datos más chico
+---
+# Ejemplo cafetería
+
+```r
+read_excel("hojas_calc/cafeteria.xlsx",sheet = 4)
+```
+&lt;img src="imgs/cafetwrap.png" width="90%"/&gt;  
+
+???
+a ésto me refiero, aunque lo que nos interesa es esto en el recuadro azul, el réctangulo de datos más chico en la hoja lo definen estas dos esquinas, y se importa todo lo que queda incluido, incluyendo las celdas vacías.
+
+---
+# Usando rangos
+.center[.middle[
+![ejemplo xls](imgs/rangoscells.gif)]]
+
+???
+para importar solamente las celdas que nos interesan, podemos usar los tradicionales rangos que usa excel. en éstos, el rectangulo de celdas se define con las coordenadas de las esquinas de los extremos, de izquiera a derecha y de arriba hacia abajo.
+En los ejemplos podemos ver cómo funciona esto
+---
+# Hojas / Pestañas 
+.center[&lt;img src="imgs/sheets.png" width="50%"/&gt;]  
+
+
+Mostrar los nombres de las pestañas
+
+```r
+ruta %&gt;%
+  excel_sheets() 
+```
+
+Importar pestañas por nombre o por ubicación
+
+```r
+ruta %&gt;%
+  read_excel(sheet = "nombre de la hoja")
+
+ruta %&gt;%
+  read_excel(sheet = 1)
+```
+
+???
+Es muy común trabajar con varias hojas o pestañas, porque nos sirven para agrupar tablas y darle portabilidad a los datos de un tema o proyecto. Además es útil que cada hoja pueda tener su propio nombre personalizado.
+
+Los nombres de las hojas los podemos ver directamente con excel sheets
+
+el comportamiento por defecto de readxl si no especificamos cuál hoja queremos es de importar la primera. Para importar una hoja en particular, la especificamos por nombre o con un numero de indique su ubicación
+
+REVISEMOS EL EJEMPLO
+---
+background-image: url(https://raw.githubusercontent.com/tidyverse/purrr/master/man/figures/logo.png)
+background-position: 90% 5%
+background-size: 10% 
+# &gt; 1 hoja/pestaña
+
+.center[![map](https://perso.ens-lyon.fr/lise.vaudor/Rfigures/Purrr/purrr2.png)
+Lise Vaudoir ([2018](https://perso.ens-lyon.fr/lise.vaudor/iterer-des-fonctions-avec-purrr/))]
+
+???
+pero qué pasa cuando hay varias hojas y queremos leer dos o más?
+aquí es cuando conviene hacer iteración, y hoy vamos a usar el paquete purrr, que tiene una sintaxis bastante accesible.
+
+La iteración y la programación funcional son otro tema que se puede volver complejo, pero este diagrama creo que representa muy bien como funciona la iteración con purrr.
+
+vamos a usar iteración porque queremos hacer lo mismo varias veces, en este caso, importar cada hoja de un excel multihojas.
+
+la fábrica es la función que queremos usar, en este caso read excel, la entrada serían los nombres de cada hoja en un archivo, y la salida es cada hoja ya importada a R
+
+EJEMPLO
+---
+background-image: url(https://raw.githubusercontent.com/tidyverse/purrr/master/man/figures/logo.png)
+background-position: 90% 5%
+background-size: 10% 
+# &gt; 1 hoja/pestaña
+
+##.center[¿Qué hacemos con cada tabla?]
+ 
+.f2[
+- Guardarlas todas en una lista
+
+- Asignar cada una a un objeto distinto en nuestro entorno global
+
+- Combinarlas en una sola tabla si tienen variables en común
+]
+
+???
+veamoslo en los EJEMPLOS
+---
+class: middle, center, inverse
+#¿Dudas?
+???
+quiero hacer una pausa aquí un par de minutos para ver si hay alguna duda
+---
+class: middle, center
+![rat1](imgs/ratones.png)
+
+???
+Para continuar, ahora les cuento algo que me pasó trabajando con hojas de cálculo y formatos de celda. 
+Hace un par de años estaba usando un archivo así para ir registrando el progreso de unos mapas. Yo tenía una columna por separado para llevar la cuenta las especies que tenía pendientes.
+
+---
+class: middle, center
+![rat2](imgs/ratones2.png)
+
+???
+en algún momento, para no desacomodar los datos y para que sea más fácil ver cuáles especies seguían pendientes, las resalté con color.
+---
+class: middle, center
+![rat3](imgs/ratones3.png)
+???
+ahi todo iba bien, pero en el proyecto había otros colaboradores con acceso al archivo y uno de ellos me borró la variable indicadora, pero como era muy considerado, pasó el formato a la columna de especies.
+
+Visualmente está todo bien con eso, pero en R yo no tenía manera de saber cuáles especies no tenían mapa, y de ahí surge mi interés en traer los formatos a R.
+---
+#`tidyxl` &lt;small&gt;- Duncan Garmonsway ([@nacnudus](https://twitter.com/nacnudus))&lt;/small&gt;
+.center[![gif](https://raw.githubusercontent.com/nacnudus/tidyxl/master/vignettes/tidy_xlsx.gif)]
+
+???
+y para trabajar con los formatos, podemos usar tidyxl
+
+A diferencia de readxl que importa los valores de las celdas en el mismo orden y estructura que vemos en la hoja, tidyxl arma una tabla con datos sobre cada una de las celdas.
+
+nos da su ubicación, hoja, fila y columna, y nos dice que hay en cada una
+
+---
+class: center, middle
+![scoobydoo](imgs/scoobyxl.png)
+
+???
+todo esto funciona solo para archivos xlslx, que internamente guardan todo en formato xlm, y tidyxl nos ayuda a desenmascarar estos archivos.
+---
+#¿Qué hay detrás de las celdas?
+
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Grupo &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; País &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RLadies Puebla &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Xalapa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Barranquilla &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Colombia &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R en Rosario &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+.pull-left[
+
+En la hoja de cálculo
+&lt;img src="imgs/xmlhoja.png" width="70%"/&gt;  
+]
+.pull-right[
+
+.right[Dentro del archivo xlsx]
+&lt;img src="imgs/xlmzip.png" width="70%" align="right"/&gt;  
+]
+???
+veamos con esta tabla super simple, tiene dos columas, y cinco filas
+asi se ve como tabla, y asi se ve en excel, pero en realidad hay varios archivos xml detras de estas 10 celdas
+
+---
+```{eval=FALSE}
+&lt;sst count="10" uniqueCount="9"&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;Grupo&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;País&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;RLadies Puebla&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;México&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;Rladies Xalapa&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;Rladies Barranquilla&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;Colombia&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;R en Rosario&lt;/t&gt;
+&lt;/si&gt;
+&lt;si&gt;
+&lt;t xml:space="preserve"&gt;Argentina&lt;/t&gt;
+&lt;/si&gt;
+&lt;/sst&gt;
+```
+
+???
+así se ve uno de los archivos que almacena lo que vemos en la hoja de cálculo
+
+podemos hacer este truquito para ver lo que detrás
+EJEMPLO,
+voy a descomprimir una copia del archivo para ver la estructura interna
+---
+class: center, middle
+.pull-left[
+###Sin formato
+![rlad](imgs/rlad.png)]
+.pull-right[
+### Con formato (y comentarios)
+![rladfrmt](imgs/rladformat.png)]
+???
+ahora que sabemos que las propiedades de cada celdan estan guardadas en algun lugar dentro del archivo, vamos a exponerlas con tidyxl. Aqui hay dos ejemplos bastante simples.
+con formato, y sin formato
+---
+
+ 
+
+```r
+tidyxl::xlsx_cells("hojas_calc/rladies.xlsx")
+```
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; sheet &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; address &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; row &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; col &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; is_blank &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; data_type &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; error &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; logical &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; numeric &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; character &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; character_formatted &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; formula &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; is_array &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; formula_ref &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; formula_group &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; comment &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; width &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; style_format &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; local_format_id &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Grupo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Grupo, NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; País &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; País, NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.43 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; RLadies Puebla &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; RLadies Puebla, NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México, NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.43 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Xalapa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Xalapa, NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México, NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.43 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Barranquilla &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Barranquilla, NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Colombia &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Colombia, NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.43 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R en Rosario &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R en Rosario, NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Argentina, NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.43 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+???
+la funcion xlsx cells nos muestra esa tabla de celdas, con varias de sus propiedades.
+ésta variable que es igual para todas es un identificador del formato local de cada celda.
+como no tienen formato, es el mismo para todas
+---
+
+ 
+
+```r
+tidyxl::xlsx_cells("hojas_calc/rladies-formato.xlsx")
+```
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; sheet &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; address &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; row &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; col &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; is_blank &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; data_type &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; error &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; logical &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; numeric &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; character &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; character_formatted &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; formula &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; is_array &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; formula_ref &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; formula_group &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; comment &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; width &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; style_format &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; local_format_id &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Grupo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Grupo, NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA   , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; País &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; País, NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA  , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.32 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; RLadies Puebla &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; RLadies Puebla, NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México, NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.32 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Xalapa &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Xalapa, NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA            , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; México, NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA    , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Veracruz &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.32 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Barranquilla &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rladies Barranquilla, NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA                  , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Colombia &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Colombia, NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA      , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.32 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R en Rosario &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R en Rosario, NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA          , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sheet1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Argentina, NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA       , NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.32 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+???
+si repetimos lo mismo para el archivo con formato, vemos que el ID de formato de las celdas ya no es el mismo. estos numeritos significan algo con respecto al formato, veamos
+---
+
+ 
+
+```r
+tidyxl::xlsx_formats("hojas_calc/rladies-formato.xlsx")$local$font
+```
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "&gt;&lt;table class="kable_wrapper table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto;"&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table class="kable_wrapper"&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FFA3238E &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Arial &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Arial &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Arial &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Arial &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Arial &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Arial &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+
+
+```r
+tidyxl::xlsx_formats("hojas_calc/rladies-formato.xlsx")$local$font$bold
+```
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped" style="font-size: 7px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+???
+estas son algunos de los valores que nos regresa la funcion xlxs formats.
+aqui lo muestro como tablas, pero si ven todos estos signos de peso, en realidad lo que saca la funcion son varias listas de vectores, y datos muy anidados pero que describen el formato de cada celda, por aqui está el formato local de las celdas, especificamente si el valor está o no en negritas, que está resumido en un vector de verdadero o falso
+
+AQUI ESTA UN EJEMPLO, para ver qué formato tiene cada celda hay que empatar los indices para cada tipo de formato (color, letra, etc.). 
+---
+background-image: url(https://unheadr.liomys.mx/reference/figures/logosmall.png)
+background-position: 90% 5%
+background-size: 20% 
+#`unheadr`
+
+Verbos estilo `dplyr` para trabajar con datos desordenados.  
+  
+  
+  
+    
+.f5[_unheadr 0.2.2 incluye la function `annotate_mf_all()`_ que trabaja en todas las variables en un solo paso.]
+
+.left-column[
+
+![rladfrmt](imgs/rladformat.png)
+]
+
+.right-column[
+Función `annotate_mf()`  
+  
+Convierte el formato en anotaciones dentro de una nueva variable.
+
+```r
+ruta_formato &lt;- "hojas_calc/rladies-formato.xlsx"
+annotate_mf(
+  xlfilepath = ruta_formato, # ruta del xlsx
+  orig = Grupo, # variable con formato
+  new=Grupo_fmt) # nueva variable a insertar
+```
+]  
+
+???
+La información que nos da tidyxl está muy buena pero no es muy práctica para usar.
+y por eso aquí les voy a promocionar parte de mi paquete unheadr.
+
+en sus inicios eran funciones generales para ordenar datos, pero después de incorporé una función que empata las celdas y los formatos que nos da tidyxl, y anota lo que encuentra sobre el formato de las celda en una copia de la columna focal.
+
+usa tres argumentos,
+la ruta de nuestro archivo,
+la variable con formato, y el nombre que le queremos dar a la copia de la variable que ahora incluye una nota sobre el formato
+---
+
+
+
+```r
+ruta_formato &lt;- "hojas_calc/rladies-formato.xlsx"
+annotate_mf(xlfilepath = ruta_formato,  orig = Grupo, new= Grupo_fmt)
+```
+
+
+```
+## # A tibble: 4 x 3
+##   Grupo                Grupo_fmt                             País     
+##   &lt;chr&gt;                &lt;chr&gt;                                 &lt;chr&gt;    
+## 1 RLadies Puebla       (highlighted-FFFFF200) RLadies Puebla México   
+## 2 Rladies Xalapa       Rladies Xalapa                        México   
+## 3 Rladies Barranquilla Rladies Barranquilla                  Colombia 
+## 4 R en Rosario         (italic) R en Rosario                 Argentina
+```
+
+.f2.blue[Formatos disponibles:]
+- Letra en negritas
+- Letra en cursiva
+- Texto subrayado
+- Celdas de colores (se muestra el código html de los colores)
+
+.f2.blue[Aceptando sugerencias...]
+.can-edit[
+-  
+-  
+-  
+
+]
+???
+tenemos un ejemplo con este mismo archivo.
+lo que está entre parentesis describe el formato de la celda.
+esta estaba resaltada en amarillo, esta tiene cursivas.
+
+Por ahora estos son los formatos disponibles, pero le puedo incorporar cualquier otro, así que estoy aceptando sugerencias, por ejemplo, tengo pendiente implementar el texto de colores
+---
+background-image: url(https://docs.ropensci.org/writexl/hexlogo.png)
+background-position: 90% 5%
+background-size: 10% 
+# Exportando archivos 
+
+##.center[[`writexl`](https://docs.ropensci.org/writexl/) por [Jeroen Ooms](https://twitter.com/opencpu)]
+
+.f2[Una sola hoja]
+
+```r
+write_xlsx(mi_tabla,path = "ruta.xlsx")
+# con nombre de hoja
+write_xlsx(list(nombre_de_hoja=mi_tabla),path = "ruta.xlsx")
+```
+
+.f2[Múltiples hojas]
+
+```r
+# lista con nombres de las hojas
+write_xlsx(list(hoja1=mi_tabla,hoja1_copia=mi_tabla),path = "ruta.xlsx")
+```
+
+.bottom[.right[`writexl` no requiere Java ni Excel]]
+???
+y así como pudimos importar hojas de calculo, tambien es posible exportar nuestros objetos de R a archivos de excel.
+
+para estó está Writexl, parte de la iniciativa Ropensi
+
+para exportar, tenemos dos opciones
+- exportar un objeto a un archivo con una sola hoja, esto lo hacemos con la funcion write xlsx
+- otra opción es exportar varios objetos a varias hojas, y con la misma función writexl es bastante facil, solo necesitamos una lista de tablas, y al exportar cada elemento queda en una hoja diferente. si los elementos de la lista tienen nombre, estos se aplican para nombrar cada hoja.
+
+EJEMPLO
+---
+background-image: url(https://docs.ropensci.org/writexl/hexlogo.png)
+background-position: 90% 5%
+background-size: 10% 
+# Exportando archivos 
+
+##.center[[`writexl`](https://docs.ropensci.org/writexl/) por [Jeroen Ooms](https://twitter.com/opencpu)]
+
+.f2[Operaciones con grupos, un archivo por grupo]
+
+```r
+vehic3 %&gt;% 
+   group_by(traccion) %&gt;% 
+   group_walk(~
+    write_xlsx(.x,
+    path = file.path(
+      paste0(.x$traccion,".xlsx"))), # construir rutas
+    .keep=TRUE) # retiene la variable de los grupos
+```
+???
+también podemos trabajar con grupos, y exportar la tabla de cada grupo a un archivo por separado. Para esto también usamos iteración. Antes eso se hacía con purrr, ahora podemos trabajar directamente con dplyr. 
+
+Este ejemplo es con un subconjunto de datos de vehiculos, que son una traducción de unos datos bastante famosos y que están disponibles en el paquete datos.
+
+Aqui lo que hago es agrupar mis datos por una variable, en este caso es tracción. y para cada grupo armo una ruta de archivo y lo mando a la función writexl.
+
+---
+background-image: url(https://raw.githubusercontent.com/tidyverse/dplyr/master/man/figures/logo.png)
+background-position: 90% 5%
+background-size: 10% 
+# &gt; 1 hoja/pestaña
+
+![map](https://perso.ens-lyon.fr/lise.vaudor/Rfigures/Purrr/purrr2.png)
+Lise Vaudoir ([2018](https://perso.ens-lyon.fr/lise.vaudor/iterer-des-fonctions-avec-purrr/))
+???
+otra vez me refiero a la misma figura, y en este caso estamos llamando group_walk porque lo que nos interesa son los efectos secundarios de la función (o sea, el humito), que en este caso es escribir archivos sin modificar nada en el entorno global.
+---
+background-image: url(https://raw.githubusercontent.com/tidyverse/googlesheets4/master/man/figures/logo.png)
+background-position: 90% 5%
+background-size: 10% 
+# googlesheets4
+.f3[Requiere cuenta de Google para escribir en hojas de cálculo en línea o para leer documentos privados.]
+
+.f3[Requiere autorización y consentimiento para conectar R con el API de Google, conforme a la [**Política de Privacidad de Datos de Tidyverse.**](https://www.tidyverse.org/google_privacy_policy/)]
+
+.f2[No requiere cuenta ni autorización para leer hojas de Google Sheets compartidas públicamente]
+
+
+```r
+gs4_deauth() # Para indicar que no hace falta ficha de acceso ni cuenta 
+read_sheet() # Para leer un documento con url o ID de documento
+write_sheet() # Para escribir en un documento
+```
+
+???
+y como no todo es excel, también quiero hablar sobre googlesheets4. este paquete es relativamente nuevo y nos sirve para leer y escribir hojas de google sheets, que viven en linea. 
+
+Si solo necesitamos leer, no necesitamos hacer nada. Si queremos escribir, o trabajar en hojas privadas, necesitamos cuenta de google. La autorización es interactiva y bastante fácil.
+
+La lectura es similar a readxl.
+
+EJEMPLO
+este es una hoja con la tabla de posiciones de la liga de futbol mexicana, la podemos leer con read sheet, podemos abrirla en el navegador con gs4'browse, y  vamos a agregarle una hoja nueva al documento en línea que estoy usando. 
+---
+background-image: url(https://raw.githubusercontent.com/chainsawriot/readODS/master/man/figures/read_ods_logo.png)
+background-position: 90% 5%
+background-size: 10% 
+
+#¿.ods?
+--
+
+#[`readODS`](https://github.com/chainsawriot/readODS/)
+
+Mismos argumentos que `readxl`
+.left-column[
+
+```r
+read_ods()
+write_ods()
+```
+]
+.right-column[
+Importar .ods, especificando hoja y rango  
+Especificando ruta
+]
+???
+y por último, como no todo es excel o goolge sheets, también está la opción de usar archivos ods. Hoy en día excel abre ods, por si queremos abrir un ods y guardarlo como excel.
+
+O bien, el paquete readODS también tiene dos funciones muy similares a las que ya vimos, una para leer y una para escribir. como no lo puse en los requerimentos, podemos obviar la demostración
+---
+class: middle, center, inverse
+#¿Dudas?
+
+---
+# Recursos
+
+https://rstudio-conf-2020.github.io/r-for-excel/  
+
+https://www.businessinsider.com/satya-nadella-excel-is-microsofts-best-consumer-product-2016-6?r=UK
+
+https://nacnudus.github.io/spreadsheet-munging-strategies/index.html  
+
+https://speakerdeck.com/jennybc/spreadsheets
+
+https://github.com/jennybc/2016-06_spreadsheets
+
+https://beyondspreadsheetswithr.com/  
+
+https://www.wsj.com/articles/do-you-really-need-microsoft-office-anymore-1407873198
+
+http://rpubs.com/dgrtwo/tidying-enron
+
+https://github.com/ianmoran11/locatr  
+
+https://github.com/r-rudra/tidycells
+
+https://luisdva.github.io/pls-don't-do-this/
+https://luisdva.github.io/rstats/spreadsheets-mf/
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
