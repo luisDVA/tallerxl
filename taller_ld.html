@@ -10,7 +10,7 @@
     <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
     <link href="libs/xaringanExtra-extra-styles-0.2.3.9000/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x6be3f33529746f881932c7f13ddff6e","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xa5d39f66259413a975979c1c053aa83","expires":1}</script>
     <script src="libs/himalaya-1.1.0/himalaya.js"></script>
     <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="libs/editable-0.2.3.9000/editable.css" rel="stylesheet" />
@@ -39,9 +39,7 @@ class: right, middle
 [&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt; liomys.mx](https://liomys.mx)  
 [&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/&gt;&lt;/svg&gt; luis@liomys.mx](mailto:luis@liomys.mx)
 
-???
-Las diapositivas tienen vínculos a practicamente todo lo que voy a estar mencionando.
-Hoy voy a estar alternando entre la presentación y Rstudio, trabajando en un script que se actualiza en vivo.
+
 ---
 # Hojas de cálculo
 
@@ -57,13 +55,6 @@ Hoy voy a estar alternando entre la presentación y Rstudio, trabajando en un sc
 .f4[[Registro de préstamos. Roma, 1593](https://librarysearch.temple.edu/catalog/991029783589703811
 )]&lt;img src="imgs/rome.jpg" width="60%" height=50%/&gt;  
 ]
-???
-
-La idea de este taller surge porque desde algunos años me ha interesado la conexión entre una de las herramientas más usadas para guardar y manejar datos, y R. 
-
-Hay casi mil millones de usuarios de hojas de cálculo, que asi como las conocemos tienen casi 40 años y en forma de papel tienen siglos ya. Mientras tanto, R tiene unos 25 años y menos de un millón de usuarios. De hecho ayer fue el cumpleaños 35 de Excel.
-
-Todos ésto es para decir que las hojas de cálculo no se van a ir a ningún lado. En todas las disciplinas que conozco la información se comparte en estos formatos, y en mi opinión casi no se nos enseña a trabajar con estos formatos.
 ---
 # Hojas de cálculo en disco
 
@@ -77,47 +68,25 @@ Todos ésto es para decir que las hojas de cálculo no se van a ir a ningún lad
 ##ods
 .f3[OpenOffice, StarOffice &amp; LibreOffice - Formato XML similar a xlsx. Licencia CC.
 ]
-???
 
-Hoy vamos a hablar principalmente sobre las hojas de cálculo que guardamos como archivos, descargamos, y compartimos. 
-
-Estos son tres de los formatos más utilizados.
-
-xls es el formato de Excel 2003, y por ser un archivo binario anclado a formatos patentados, no lo recomiendo.
-
-Excel de 2007 en adelante lee todos los demás, y también existe el formato ods que utilizan los paquetes de oficina de código abierto. 
-
-Estos últimos dos son bastante parecidos y para la mayoría de su funcionalidad yo diría que son intercambiables. 
 ---
 background-image: url("imgs/recosistema.png")
 
-???
-Esta es una representación muy simplificada de lo que se puede y no se puede hacer entre formatos.
-
-Para guardar y presentar datos tenemos muchas opciones. Puede ser como archivos de texto (como csv, tsv, txt) que son de las formas más simples para guardar datos tabulares, y estos los podemos abrir con R, con excel, o importar a bases de datos. R también puede conectarse a bases de datos como sql o mongo, además podemos generar reportes, aplicaciones, o páginas web desde R.
-
-Pero hoy el enfoque es aquí, entre R y hojas de cálculo.
 ---
 class: center, middle
 # Organización de datos
 
-???
-Antes de cualquier otra cosa, toca hablar sobre organización de datos. Esto es importante porque las hojas de cálculo son como un lienzo en blanco que nos permiten mucha flexibilidad, lo cual a veces complica la organización de los datos y cómo los podemos importar y trabajar.
 ---
 class: center, middle
 ![ejemplo xls](imgs/excel8bit.jpg)
 por  [Christian Wijaya](https://asapguide.com/how-to-make-8-bit-art-using-microsoft-excel/)
 
-???
-en un archivo excel tenemos todas estas celdas vacías para hacer lo que querramos, y por qué no hacer unos dibujos.
 ---
 class: center, middle
 ![ejemplo xls](imgs/bromanwoo.png)
 
 Broman &amp; Woo ([2018](https://doi.org/10.1080/00031305.2017.1375989))
 
-???
-Por suerte, desde hace dos años ya está disponible abiertamente está guía sobre cómo organizar datos en hojas de cálculo. Está en inglés pero vale mucho la pena.
 ---
 # Organización de datos
 .right-column[
@@ -137,24 +106,10 @@ Guardar como archivo de texto]]]
 .left-column[
 ![tetris](imgs/tetris.png)
 ]
-???
-éstas son algunas recomendaciones que hacen los autores del artículo que mencioné.
-
-Hay que darle nombres adecuados a los archivos y a las variables que estamos usando.
-Hay que guardar un solo valor en cada celda.
-Las fechas de preferencia en formato año mes día.
-Sin dejar celdas en blanco, y de preferencia formando rectángulos con las filas y las columnas.
-Sin depender en colores, letras, u otros formatos para almacenar información.
-y, al momento de compartir, preferir archivos de texto.
 ---
 class: center, middle
 ![ejemplo xls](imgs/contabilidadxls.png)
 
-???
-este es un ejemplo inventado de lo que no conviene hacer.
-no es rectangular, hay colores y otros formatos, y los datos en sí están desordenados.
-
-Teniendo esto en mente, sigue siendo necesario poder importar los archivos que ya tenemos, así que ahora sí vamos a ver cómo importar hojas de cálculo a R.
 ---
 class: center, middle
 # Importando datos
@@ -162,8 +117,6 @@ class: center, middle
 ##`readxl`  
 [https://readxl.tidyverse.org/](https://readxl.tidyverse.org/)
 
-???
-me voy a enfocar en archivos xlsx de Excel, y lo que recomiendo para esto es readxl, que se puede usar con una herramienta gráfica dentro de Rstudio, o llamando sus funciones directamente.
 ---
 background-image: url(https://raw.githubusercontent.com/tidyverse/readxl/master/man/figures/logo.png)
 background-position: 90% 5%
@@ -199,22 +152,10 @@ read_excel(path = ,  # ruta del archivo
            )
 ```
 
-???
-cargamos el paquete, y éstas son las funciones que nos interesan
-podemos especificar el formato del archivo que vamos a leer, o dejar que lo adivine
-
-los tres argumentos que nos interesan son path, con la ruta del archivo
-sheet, con la hoja
-y range, con las celdas a importar, en el formato de rangos que usa excel
-
 ---
 background-image: url("https://www.clondalkingroup.com/wp-content/uploads/2015/03/Bundle-wrap.jpg")
 background-size: cover
 
-???
-este six de cerveza está aquí porque refleja el comportamiento por defecto de readxl cuando lee hojas
-
-la misma documentación nos dice que funciona como estos plásticos que encogen con calor, y al leer una hoja la función busca el rectángulo de datos más chico
 ---
 # Ejemplo cafetería
 
@@ -223,17 +164,11 @@ read_excel("hojas_calc/cafeteria.xlsx",sheet = 4)
 ```
 &lt;img src="imgs/cafetwrap.png" width="90%"/&gt;  
 
-???
-a ésto me refiero, aunque lo que nos interesa es esto en el recuadro azul, el réctangulo de datos más chico en la hoja lo definen estas dos esquinas, y se importa todo lo que queda incluido, incluyendo las celdas vacías.
-
 ---
 # Usando rangos
 .center[.middle[
 ![ejemplo xls](imgs/rangoscells.gif)]]
 
-???
-para importar solamente las celdas que nos interesan, podemos usar los tradicionales rangos que usa excel. en éstos, el rectangulo de celdas se define con las coordenadas de las esquinas de los extremos, de izquiera a derecha y de arriba hacia abajo.
-En los ejemplos podemos ver cómo funciona esto
 ---
 # Hojas / Pestañas 
 .center[&lt;img src="imgs/sheets.png" width="50%"/&gt;]  
@@ -256,14 +191,6 @@ ruta %&gt;%
   read_excel(sheet = 1)
 ```
 
-???
-Es muy común trabajar con varias hojas o pestañas, porque nos sirven para agrupar tablas y darle portabilidad a los datos de un tema o proyecto. Además es útil que cada hoja pueda tener su propio nombre personalizado.
-
-Los nombres de las hojas los podemos ver directamente con excel sheets
-
-el comportamiento por defecto de readxl si no especificamos cuál hoja queremos es de importar la primera. Para importar una hoja en particular, la especificamos por nombre o con un numero de indique su ubicación
-
-REVISEMOS EL EJEMPLO
 ---
 background-image: url(https://raw.githubusercontent.com/tidyverse/purrr/master/man/figures/logo.png)
 background-position: 90% 5%
@@ -273,17 +200,6 @@ background-size: 10%
 .center[![map](https://perso.ens-lyon.fr/lise.vaudor/Rfigures/Purrr/purrr2.png)
 Lise Vaudoir ([2018](https://perso.ens-lyon.fr/lise.vaudor/iterer-des-fonctions-avec-purrr/))]
 
-???
-pero qué pasa cuando hay varias hojas y queremos leer dos o más?
-aquí es cuando conviene hacer iteración, y hoy vamos a usar el paquete purrr, que tiene una sintaxis bastante accesible.
-
-La iteración y la programación funcional son otro tema que se puede volver complejo, pero este diagrama creo que representa muy bien como funciona la iteración con purrr.
-
-vamos a usar iteración porque queremos hacer lo mismo varias veces, en este caso, importar cada hoja de un excel multihojas.
-
-la fábrica es la función que queremos usar, en este caso read excel, la entrada serían los nombres de cada hoja en un archivo, y la salida es cada hoja ya importada a R
-
-EJEMPLO
 ---
 background-image: url(https://raw.githubusercontent.com/tidyverse/purrr/master/man/figures/logo.png)
 background-position: 90% 5%
@@ -292,59 +208,29 @@ background-size: 10%
 
 ##.center[¿Qué hacemos con cada tabla?]
  
-.f2[
-- Guardarlas todas en una lista
-
-- Asignar cada una a un objeto distinto en nuestro entorno global
-
-- Combinarlas en una sola tabla si tienen variables en común
-]
-
-???
-veamoslo en los EJEMPLOS
 ---
 class: middle, center, inverse
 #¿Dudas?
-???
-quiero hacer una pausa aquí un par de minutos para ver si hay alguna duda
 ---
 class: middle, center
 ![rat1](imgs/ratones.png)
-
-???
-Para continuar, ahora les cuento algo que me pasó trabajando con hojas de cálculo y formatos de celda. 
-Hace un par de años estaba usando un archivo así para ir registrando el progreso de unos mapas. Yo tenía una columna por separado para llevar la cuenta las especies que tenía pendientes.
 
 ---
 class: middle, center
 ![rat2](imgs/ratones2.png)
 
-???
-en algún momento, para no desacomodar los datos y para que sea más fácil ver cuáles especies seguían pendientes, las resalté con color.
 ---
 class: middle, center
 ![rat3](imgs/ratones3.png)
-???
-ahi todo iba bien, pero en el proyecto había otros colaboradores con acceso al archivo y uno de ellos me borró la variable indicadora, pero como era muy considerado, pasó el formato a la columna de especies.
 
-Visualmente está todo bien con eso, pero en R yo no tenía manera de saber cuáles especies no tenían mapa, y de ahí surge mi interés en traer los formatos a R.
 ---
 #`tidyxl` &lt;small&gt;- Duncan Garmonsway ([@nacnudus](https://twitter.com/nacnudus))&lt;/small&gt;
 .center[![gif](https://raw.githubusercontent.com/nacnudus/tidyxl/master/vignettes/tidy_xlsx.gif)]
-
-???
-y para trabajar con los formatos, podemos usar tidyxl
-
-A diferencia de readxl que importa los valores de las celdas en el mismo orden y estructura que vemos en la hoja, tidyxl arma una tabla con datos sobre cada una de las celdas.
-
-nos da su ubicación, hoja, fila y columna, y nos dice que hay en cada una
 
 ---
 class: center, middle
 ![scoobydoo](imgs/scoobyxl.png)
 
-???
-todo esto funciona solo para archivos xlslx, que internamente guardan todo en formato xlm, y tidyxl nos ayuda a desenmascarar estos archivos.
 ---
 #¿Qué hay detrás de las celdas?
 
@@ -388,9 +274,6 @@ En la hoja de cálculo
 .right[Dentro del archivo xlsx]
 &lt;img src="imgs/xlmzip.png" width="70%" align="right"/&gt;  
 ]
-???
-veamos con esta tabla super simple, tiene dos columas, y cinco filas
-asi se ve como tabla, y asi se ve en excel, pero en realidad hay varios archivos xml detras de estas 10 celdas
 
 ---
 ```{eval=FALSE}
@@ -425,12 +308,6 @@ asi se ve como tabla, y asi se ve en excel, pero en realidad hay varios archivos
 &lt;/sst&gt;
 ```
 
-???
-así se ve uno de los archivos que almacena lo que vemos en la hoja de cálculo
-
-podemos hacer este truquito para ver lo que detrás
-EJEMPLO,
-voy a descomprimir una copia del archivo para ver la estructura interna
 ---
 class: center, middle
 .pull-left[
@@ -439,9 +316,6 @@ class: center, middle
 .pull-right[
 ### Con formato (y comentarios)
 ![rladfrmt](imgs/rladformat.png)]
-???
-ahora que sabemos que las propiedades de cada celdan estan guardadas en algun lugar dentro del archivo, vamos a exponerlas con tidyxl. Aqui hay dos ejemplos bastante simples.
-con formato, y sin formato
 ---
 
  
@@ -709,10 +583,6 @@ tidyxl::xlsx_cells("hojas_calc/rladies.xlsx")
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
-???
-la funcion xlsx cells nos muestra esa tabla de celdas, con varias de sus propiedades.
-ésta variable que es igual para todas es un identificador del formato local de cada celda.
-como no tienen formato, es el mismo para todas
 ---
 
  
@@ -980,8 +850,6 @@ tidyxl::xlsx_cells("hojas_calc/rladies-formato.xlsx")
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
-???
-si repetimos lo mismo para el archivo con formato, vemos que el ID de formato de las celdas ya no es el mismo. estos numeritos significan algo con respecto al formato, veamos
 ---
 
  
@@ -1442,11 +1310,6 @@ tidyxl::xlsx_formats("hojas_calc/rladies-formato.xlsx")$local$font$bold
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;
-???
-estas son algunos de los valores que nos regresa la funcion xlxs formats.
-aqui lo muestro como tablas, pero si ven todos estos signos de peso, en realidad lo que saca la funcion son varias listas de vectores, y datos muy anidados pero que describen el formato de cada celda, por aqui está el formato local de las celdas, especificamente si el valor está o no en negritas, que está resumido en un vector de verdadero o falso
-
-AQUI ESTA UN EJEMPLO, para ver qué formato tiene cada celda hay que empatar los indices para cada tipo de formato (color, letra, etc.). 
 ---
 background-image: url(https://unheadr.liomys.mx/reference/figures/logosmall.png)
 background-position: 90% 5%
@@ -1478,16 +1341,6 @@ annotate_mf(
   new=Grupo_fmt) # nueva variable a insertar
 ```
 ]  
-
-???
-La información que nos da tidyxl está muy buena pero no es muy práctica para usar.
-y por eso aquí les voy a promocionar parte de mi paquete unheadr.
-
-en sus inicios eran funciones generales para ordenar datos, pero después de incorporé una función que empata las celdas y los formatos que nos da tidyxl, y anota lo que encuentra sobre el formato de las celda en una copia de la columna focal.
-
-usa tres argumentos,
-la ruta de nuestro archivo,
-la variable con formato, y el nombre que le queremos dar a la copia de la variable que ahora incluye una nota sobre el formato
 ---
 
 
@@ -1521,12 +1374,6 @@ annotate_mf(xlfilepath = ruta_formato,  orig = Grupo, new= Grupo_fmt)
 -  
 
 ]
-???
-tenemos un ejemplo con este mismo archivo.
-lo que está entre parentesis describe el formato de la celda.
-esta estaba resaltada en amarillo, esta tiene cursivas.
-
-Por ahora estos son los formatos disponibles, pero le puedo incorporar cualquier otro, así que estoy aceptando sugerencias, por ejemplo, tengo pendiente implementar el texto de colores
 ---
 background-image: url(https://docs.ropensci.org/writexl/hexlogo.png)
 background-position: 90% 5%
@@ -1551,16 +1398,7 @@ write_xlsx(list(hoja1=mi_tabla,hoja1_copia=mi_tabla),path = "ruta.xlsx")
 ```
 
 .bottom[.right[`writexl` no requiere Java ni Excel]]
-???
-y así como pudimos importar hojas de calculo, tambien es posible exportar nuestros objetos de R a archivos de excel.
 
-para estó está Writexl, parte de la iniciativa Ropensi
-
-para exportar, tenemos dos opciones
-- exportar un objeto a un archivo con una sola hoja, esto lo hacemos con la funcion write xlsx
-- otra opción es exportar varios objetos a varias hojas, y con la misma función writexl es bastante facil, solo necesitamos una lista de tablas, y al exportar cada elemento queda en una hoja diferente. si los elementos de la lista tienen nombre, estos se aplican para nombrar cada hoja.
-
-EJEMPLO
 ---
 background-image: url(https://docs.ropensci.org/writexl/hexlogo.png)
 background-position: 90% 5%
@@ -1580,13 +1418,6 @@ vehic3 %&gt;%
       paste0(.x$traccion,".xlsx"))), # construir rutas
     .keep=TRUE) # retiene la variable de los grupos
 ```
-???
-también podemos trabajar con grupos, y exportar la tabla de cada grupo a un archivo por separado. Para esto también usamos iteración. Antes eso se hacía con purrr, ahora podemos trabajar directamente con dplyr. 
-
-Este ejemplo es con un subconjunto de datos de vehiculos, que son una traducción de unos datos bastante famosos y que están disponibles en el paquete datos.
-
-Aqui lo que hago es agrupar mis datos por una variable, en este caso es tracción. y para cada grupo armo una ruta de archivo y lo mando a la función writexl.
-
 ---
 background-image: url(https://raw.githubusercontent.com/tidyverse/dplyr/master/man/figures/logo.png)
 background-position: 90% 5%
@@ -1595,8 +1426,6 @@ background-size: 10%
 
 ![map](https://perso.ens-lyon.fr/lise.vaudor/Rfigures/Purrr/purrr2.png)
 Lise Vaudoir ([2018](https://perso.ens-lyon.fr/lise.vaudor/iterer-des-fonctions-avec-purrr/))
-???
-otra vez me refiero a la misma figura, y en este caso estamos llamando group_walk porque lo que nos interesa son los efectos secundarios de la función (o sea, el humito), que en este caso es escribir archivos sin modificar nada en el entorno global.
 ---
 background-image: url(https://raw.githubusercontent.com/tidyverse/googlesheets4/master/man/figures/logo.png)
 background-position: 90% 5%
@@ -1615,15 +1444,6 @@ read_sheet() # Para leer un documento con url o ID de documento
 write_sheet() # Para escribir en un documento
 ```
 
-???
-y como no todo es excel, también quiero hablar sobre googlesheets4. este paquete es relativamente nuevo y nos sirve para leer y escribir hojas de google sheets, que viven en linea. 
-
-Si solo necesitamos leer, no necesitamos hacer nada. Si queremos escribir, o trabajar en hojas privadas, necesitamos cuenta de google. La autorización es interactiva y bastante fácil.
-
-La lectura es similar a readxl.
-
-EJEMPLO
-este es una hoja con la tabla de posiciones de la liga de futbol mexicana, la podemos leer con read sheet, podemos abrirla en el navegador con gs4'browse, y  vamos a agregarle una hoja nueva al documento en línea que estoy usando. 
 ---
 background-image: url(https://raw.githubusercontent.com/chainsawriot/readODS/master/man/figures/read_ods_logo.png)
 background-position: 90% 5%
@@ -1646,10 +1466,6 @@ write_ods()
 Importar .ods, especificando hoja y rango  
 Especificando ruta
 ]
-???
-y por último, como no todo es excel o goolge sheets, también está la opción de usar archivos ods. Hoy en día excel abre ods, por si queremos abrir un ods y guardarlo como excel.
-
-O bien, el paquete readODS también tiene dos funciones muy similares a las que ya vimos, una para leer y una para escribir. como no lo puse en los requerimentos, podemos obviar la demostración
 ---
 class: middle, center, inverse
 #¿Dudas?
